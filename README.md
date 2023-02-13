@@ -55,11 +55,11 @@ Luego de realizar la limpieza y modelado de datos, hay 2 nuevas columnas relacio
 | level_education | texto | Nivel más alto de educación | 
 | gender | texto | Genero del encuestado | 
 | race | texto | Raza del encuestado | 
-| country_clean | texto | País donde trabaja, luego de la limpieza y estandarización | 
+| country_clean | geográfica | País donde trabaja, luego de la limpieza y estandarización | 
 | salario_anual | número | Salario anual en pesos colombianos basada en la tasa de cambio del día 12/02/2023 |
 | compensaciones | número | Compensaciones en pesos colombianos basada en la tasa de cambio del día 12/02/2023 | 
 | ingreso_total | número | Ingreso total en pesos colombianos |
-| city_clean | texto | Ciudad donde trabaja, luego de la limpieza y estandarización | 
+| city_clean | geográfica | Ciudad donde trabaja, luego de la limpieza y estandarización | 
 
 **Actualización de datos para aplicar el modelado de datos**
 
