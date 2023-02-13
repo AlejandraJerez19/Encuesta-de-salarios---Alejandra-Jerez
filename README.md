@@ -3,7 +3,7 @@
 Este desarrollo es parte del curso de Visualización y Storytelling de la Maestría en Inteligencia Analítica de Datos (MIAD). 
 
 * [Modelar los datos](Limpieza_Datos.md): En el link, se puede ir al Jupiter Notebook en el que se realizó el modelado de datos.
-* Dashboard: En el link, se puede ir al visualizador en Looker Studio.
+* [Dashboard] (https://lookerstudio.google.com/reporting/edd046da-52bc-4046-abd6-c4f169dc3c8d): En el link, se puede ir al visualizador en Looker Studio.
 * Documentación: A continuación, se puede ver la documentación relacionada con el modelado y la actualización de los datos.
 
 **Variables en base de datos original**
