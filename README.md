@@ -69,4 +69,4 @@ Para actualizar los datos primero se debe descargar de el archivo del siguiente 
 2. Se calculan los campos de “salario_anual” y “compensaciones” en  Pesos Colombianos. Para ello, se tuvo en cuenta la tasa de cambio obtenida el 12/02/2023 por https://www.xe.com/currencyconverter/. 
 3. Se crea el campo adicional del "ingreso total" sumando los campos calculados del salario anual y las compensaciones en pesos colombianos.
 
-Luego de ejecutar todo el jupiter notebook, se obtiene un archivo con la base de datos limpia en formato csv. Dicha base se debe cargar nuevamente a Looker Studio para actualizar la información que esta mostrando el visualizador.
+Luego de ejecutar todo el jupiter notebook, se obtiene un archivo con la base de datos limpia en formato xlsx con codificación UTF-8. Dicha base se debe cargar nuevamente a Looker Studio para actualizar la información que esta mostrando el visualizador.
