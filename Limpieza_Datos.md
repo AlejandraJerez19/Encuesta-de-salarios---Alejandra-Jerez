@@ -114,25 +114,21 @@ df = clean_country(df, 'country', output_format= "name")
     Result contains 27803 (99.52%) values in the correct format and 133 null values (0.48%)
     
 
-Cabe mencionar que el diccionario solo cuenta con los nombres de los paises que no son posibles de traducir por la función. Lo anterior, nos apoya en el proceso de limpieza pues no es necesario realizar una limpieza manual a muchos registros sino solo aquellos que la función no leyo. Teniendo en cuenta que de los registros originales de la base de datos solo un 0.48% (133 registros) no fueron estandarizados, se decide eliminar aquellos registros que no pasaron satisfactoriamente por el proceso de limpieza.  
+Cabe mencionar que el diccionario solo cuenta con los nombres de los paises que no son posibles de traducir por la función. Lo anterior, nos apoya en el proceso de limpieza pues no es necesario realizar una limpieza manual a muchos registros sino solo aquellos que la función no leyo. Hay de los registros originales de la base de datos solo un 0.48% (133 registros) no fueron estandarizados.
 
 Finalemente, se crea una nueva variable **Country_clean** con los países estandarizados.
 
 
 ```python
-df_clean = df.dropna(subset=['country_clean'])
+df_clean = df
 ```
 
 Ahora, se realiza la limpieza del campo **city**. Primero, se eliminar las filas que presenten ciudades en valores faltantes. Luego, se revisan y organizan las ciudades en una lista para aplicar la métrica de similitud de textos del paquete *fuzzywuzzy*.
 
 
 ```python
-df_clean = df_clean.dropna(subset=['city'])
-```
-
-
-```python
-df_cities = df_clean["city"]
+df_cities = df_clean["city"].tolist()
+df_cities = [str(x) for x in df_cities]
 ```
 
 
@@ -147,7 +143,7 @@ city_no_spaces = remove_spaces(df_cities)
 def get_unique_values(lst):
     return list(set(lst))
 unique_cities = get_unique_values(city_no_spaces)
-sorted_unique_cities = sorted(unique_cities)[16:]
+sorted_unique_cities = sorted(unique_cities)
 ```
 
 
@@ -158,7 +154,7 @@ len(sorted_unique_cities)
 
 
 
-    4168
+    4216
 
 
 
@@ -170,8 +166,17 @@ score_sort = [(x,) + i
 #Create a dataframe from the tuples
 similarity_sort = pd.DataFrame(score_sort, columns=['city_sort','match_sort','score_sort'])
 similarity_sort.head()
-     
 ```
+
+    Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '']
+    Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '-']
+    Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '--']
+    Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '---']
+    Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '-----']
+    Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '.']
+    Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '..']
+    Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '/']
+    
 
 
 
@@ -202,33 +207,33 @@ similarity_sort.head()
   <tbody>
     <tr>
       <th>0</th>
-      <td>A Coruña</td>
-      <td>A Coruña</td>
+      <td></td>
+      <td></td>
       <td>100</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>A Coruña</td>
-      <td>Accra</td>
-      <td>67</td>
+      <td></td>
+      <td>-</td>
+      <td>100</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>A Coruña</td>
-      <td>Victorua</td>
-      <td>67</td>
+      <td></td>
+      <td>--</td>
+      <td>100</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>A Coruña</td>
-      <td>Anchorage</td>
-      <td>62</td>
+      <td></td>
+      <td>---</td>
+      <td>100</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>A Coruña</td>
-      <td>Anchoragr</td>
-      <td>62</td>
+      <td></td>
+      <td>-----</td>
+      <td>100</td>
     </tr>
   </tbody>
 </table>
@@ -272,38 +277,38 @@ similarity_sort.head()
   <tbody>
     <tr>
       <th>0</th>
-      <td>A Coruña</td>
-      <td>A Coruña</td>
+      <td></td>
+      <td></td>
       <td>100</td>
-      <td>A Coruña</td>
+      <td></td>
     </tr>
     <tr>
       <th>1</th>
-      <td>A Coruña</td>
-      <td>Accra</td>
-      <td>67</td>
-      <td>A Coruña</td>
+      <td></td>
+      <td>-</td>
+      <td>100</td>
+      <td></td>
     </tr>
     <tr>
       <th>2</th>
-      <td>A Coruña</td>
-      <td>Victorua</td>
-      <td>67</td>
-      <td>A Coruña</td>
+      <td></td>
+      <td>--</td>
+      <td>100</td>
+      <td></td>
     </tr>
     <tr>
       <th>3</th>
-      <td>A Coruña</td>
-      <td>Anchorage</td>
-      <td>62</td>
-      <td>A Coruña</td>
+      <td></td>
+      <td>---</td>
+      <td>100</td>
+      <td></td>
     </tr>
     <tr>
       <th>4</th>
-      <td>A Coruña</td>
-      <td>Anchoragr</td>
-      <td>62</td>
-      <td>A Coruña</td>
+      <td></td>
+      <td>-----</td>
+      <td>100</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -348,33 +353,33 @@ high_score_sort
   </thead>
   <tbody>
     <tr>
+      <th>1</th>
+      <td></td>
+      <td>-</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td></td>
+      <td>--</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td></td>
+      <td>---</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td></td>
+      <td>-----</td>
+      <td>100</td>
+    </tr>
+    <tr>
       <th>6</th>
-      <td>A city in the UK</td>
-      <td>City</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>A city in the UK</td>
-      <td>UK</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>A city in the UK</td>
-      <td>Uk</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>A city small enough to not answer this question</td>
-      <td>A small city</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>A city small enough to not answer this question</td>
-      <td>City</td>
+      <td>(Anonymous)</td>
+      <td>Anonymous</td>
       <td>100</td>
     </tr>
     <tr>
@@ -384,38 +389,38 @@ high_score_sort
       <td>...</td>
     </tr>
     <tr>
-      <th>20468</th>
+      <th>20703</th>
       <td>rather not say</td>
       <td>rather not say (too identifiable)</td>
       <td>100</td>
     </tr>
     <tr>
-      <th>20469</th>
+      <th>20704</th>
       <td>rather not say</td>
       <td>would rather not say</td>
       <td>100</td>
     </tr>
     <tr>
-      <th>20487</th>
+      <th>20722</th>
       <td>regional</td>
       <td>regional city</td>
       <td>100</td>
     </tr>
     <tr>
-      <th>20501</th>
+      <th>20736</th>
       <td>remove</td>
       <td>would remove my anonymity to state this</td>
       <td>100</td>
     </tr>
     <tr>
-      <th>20627</th>
+      <th>20862</th>
       <td>small college town</td>
       <td>small town</td>
       <td>100</td>
     </tr>
   </tbody>
 </table>
-<p>2330 rows × 3 columns</p>
+<p>2373 rows × 3 columns</p>
 </div>
 
 
@@ -440,7 +445,7 @@ len(df_clean['city_clean'].unique().tolist())
 
 
 
-    3707
+    3728
 
 
 
@@ -464,17 +469,17 @@ unique_currency
 
 
 
-    ['ZAR',
+    ['HKD',
+     'USD',
+     'EUR',
+     'AUD/NZD',
      'GBP',
      'Other',
-     'HKD',
-     'JPY',
-     'AUD/NZD',
      'CHF',
-     'EUR',
-     'CAD',
      'SEK',
-     'USD']
+     'JPY',
+     'ZAR',
+     'CAD']
 
 
 
