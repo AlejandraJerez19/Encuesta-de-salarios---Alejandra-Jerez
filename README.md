@@ -2,7 +2,7 @@
 
 Este desarrollo es parte del curso de Visualización y Storytelling de la Maestría en Inteligencia Analítica de Datos (MIAD). 
 
-* [Modelar los datos](Limpieza_Datos.md): En el link, se puede ir al Jupiter Notebook en el que se realizó el modelado de datos.
+* [Modelar los datos](Limpieza_Datos.md): En el link, se puede ir al Jupyter Notebook en el que se realizó el modelado de datos.
 * [Dashboard](https://lookerstudio.google.com/reporting/edd046da-52bc-4046-abd6-c4f169dc3c8d): En el link, se puede ir al visualizador en Looker Studio.
 * Documentación: A continuación, se puede ver la documentación relacionada con el modelado y la actualización de los datos.
 
@@ -63,9 +63,9 @@ Luego de realizar la limpieza y modelado de datos, hay 2 nuevas columnas relacio
 
 **Actualización de datos para aplicar el modelado de datos**
 
-Para actualizar los datos primero se debe descargar de el archivo del siguiente link en formato csv. Posteriormente, se debe utilizar el jupiter notebook donde se encuentra el proceso de modelado de datos. A continuación, realizaré un resumen de la implementación del modelado. Para más detalle, pueden ver el modelado de datos [aquí](Limpieza_Datos.md). 
+Para actualizar los datos primero se debe descargar de el archivo del siguiente link en formato csv. Posteriormente, se debe utilizar el jupyter notebook donde se encuentra el proceso de modelado de datos. A continuación, realizaré un resumen de la implementación del modelado. Para más detalle, pueden ver el modelado de datos [aquí](Limpieza_Datos.md). 
 1. Se realiza la limpieza de los campos de “country” y “city” para homogenizar los nombres de los lugares. Para el campo de *country*, se implementa la función *clean_country* del paquete *dataprep* para la estandarización del campo mencionado pues la función limpia una columna que contiene nombres de países y/o códigos de país ISO 3166, y los normaliza en el formato deseado. También, se implementa una limpieza manual usando un diccionario con solo los textos faltantes para los nombres de paises que no fueron resultos por la función. Para el campo de *city* se eliminan las filas que presenten ciudades con valores faltantes. Luego, se revisan y organizan las ciudades en una lista para aplicar la métrica de similitud de textos del paquete *fuzzywuzzy*.
 2. Se calculan los campos de “salario_anual” y “compensaciones” en  Pesos Colombianos. Para ello, se tuvo en cuenta la tasa de cambio obtenida el 12/02/2023 por https://www.xe.com/currencyconverter/. 
 3. Se crea el campo adicional del "ingreso total" sumando los campos calculados del salario anual y las compensaciones en pesos colombianos.
 
-Luego de ejecutar todo el jupiter notebook, se obtiene un archivo con la base de datos limpia en formato xlsx con codificación UTF-8. Dicha base se debe cargar nuevamente a Looker Studio para actualizar la información que esta mostrando el visualizador.
+Luego de ejecutar todo el jupyter notebook, se obtiene un archivo con la base de datos limpia en formato xlsx con codificación UTF-8. Dicha base se debe cargar nuevamente a Looker Studio para actualizar la información que esta mostrando el visualizador.
