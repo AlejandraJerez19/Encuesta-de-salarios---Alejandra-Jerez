@@ -33,8 +33,7 @@ Hay que mencionar que los nombres de las variables estan  escritas en inglés, t
 
 **Variables luego de modeladas**
 
-Luego de realizar la limpieza y modelado de datos, hay 2 nuevas columnas relacionadas a los campos de país y ciudad estadarizadas y 3 nuevas columnas relacionadas al calculo del salario anual, compensaciones e ingresos totales en pesos colombianos. Cabe mencionar que, se decidio renombrar las columnas que habían antes del modelado con el fin de tener mayor claridad en el proceso de limpieza. También hay que resaltar que se decide manejar el nombre de las columnas en inglés. 
-Luego de aplicar la limpieza, minado y filtrado de los datos nos quedamos con las siguientes variables, se crean dos nuevas columnas con las versiones modificadas/estandarizadas de país y ciudad, y tres nuevas columnas que corresponde al salario anual, compensaciones e ingresos totales en pesos colombianos.
+Luego de realizar la limpieza y modelado de datos, hay 2 nuevas columnas relacionadas a los campos de país y ciudad estadarizadas y 3 nuevas columnas relacionadas al calculo del salario anual, compensaciones e ingresos totales en pesos colombianos. Cabe mencionar que, se decidio renombrar las columnas que habían antes del modelado con el fin de tener mayor claridad en el proceso de limpieza. También hay que resaltar que se decide manejar el nombre de las columnas en inglés.
 
 | Nombre | Tipo de dato | Descripción |
 | --- | --- | --- |
