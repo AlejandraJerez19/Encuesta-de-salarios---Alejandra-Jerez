@@ -2,7 +2,7 @@
 
 Este desarrollo es parte del curso de Visualización y Storytelling de la Maestría en Inteligencia Analítica de Datos (MIAD). 
 
-* Modelar los datos: En el link, se puede ir al Jupiter Notebook en el que se realizó el modelado de datos.
+* [Modelar los datos](Limpieza_Datos.md): En el link, se puede ir al Jupiter Notebook en el que se realizó el modelado de datos.
 * Dashboard: En el link, se puede ir al visualizador en Looker Studio.
 * Documentación: A continuación, se puede ver la documentación relacionada con el modelado y la actualización de los datos.
 
@@ -36,13 +36,6 @@ Hay que mencionar que los nombres de las variables estan  escritas en inglés, t
 Luego de realizar la limpieza y modelado de datos, hay 2 nuevas columnas relacionadas a los campos de país y ciudad estadarizadas y 3 nuevas columnas relacionadas al calculo del salario anual, compensaciones e ingresos totales en pesos colombianos. Cabe mencionar que, se decidio renombrar las columnas que habían antes del modelado con el fin de tener mayor claridad en el proceso de limpieza. También hay que resaltar que se decide manejar el nombre de las columnas en inglés. 
 Luego de aplicar la limpieza, minado y filtrado de los datos nos quedamos con las siguientes variables, se crean dos nuevas columnas con las versiones modificadas/estandarizadas de país y ciudad, y tres nuevas columnas que corresponde al salario anual, compensaciones e ingresos totales en pesos colombianos.
 
-timestamp', 'age_range', 'industry', 'job_title',
-       'additional_context_job', 'annual_salary',
-       'additional_monetary_compensation', 'currency', 'other_currency',
-       'additional_context_income', 'country', 'state_US', 'city',
-       'years_work_experience', 'years_work_experience_field',
-       'level_education', 'gender', 'race', 'country_clean', 'salario_anual',
-       'compensaciones', 'salario_total', 'city_clean
 | Nombre | Tipo de dato | Descripción |
 | --- | --- | --- |
 | timestamp | texto/datetime | Fecha y hora de la respuesta a la encuesta |
@@ -71,7 +64,7 @@ timestamp', 'age_range', 'industry', 'job_title',
 
 **Actualización de datos para aplicar el modelado de datos**
 
-Para actualizar los datos primero se debe descargar de el archivo del siguiente link en formato csv. Posteriormente, se debe utilizar el jupiter notebook donde se encuentra el proceso de modelado de datos. A continuación, realizaré un resumen de la implementación del modelado. Para más detalle, pueden ver el modelado de datos aquí. 
+Para actualizar los datos primero se debe descargar de el archivo del siguiente link en formato csv. Posteriormente, se debe utilizar el jupiter notebook donde se encuentra el proceso de modelado de datos. A continuación, realizaré un resumen de la implementación del modelado. Para más detalle, pueden ver el modelado de datos [aquí](Limpieza_Datos.md). 
 1. Se realiza la limpieza de los campos de “country” y “city” para homogenizar los nombres de los lugares. Para el campo de *country*, se implementa la función *clean_country* del paquete *dataprep* para la estandarización del campo mencionado pues la función limpia una columna que contiene nombres de países y/o códigos de país ISO 3166, y los normaliza en el formato deseado. También, se implementa una limpieza manual usando un diccionario con solo los textos faltantes para los nombres de paises que no fueron resultos por la función. Para el campo de *city* se eliminan las filas que presenten ciudades con valores faltantes. Luego, se revisan y organizan las ciudades en una lista para aplicar la métrica de similitud de textos del paquete *fuzzywuzzy*.
 2. Se calculan los campos de “salario_anual” y “compensaciones” en  Pesos Colombianos. Para ello, se tuvo en cuenta la tasa de cambio obtenida el 12/02/2023 por https://www.xe.com/currencyconverter/. 
 3. Se crea el campo adicional del "ingreso total" sumando los campos calculados del salario anual y las compensaciones en pesos colombianos.
