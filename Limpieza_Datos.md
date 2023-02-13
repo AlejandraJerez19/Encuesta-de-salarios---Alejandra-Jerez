@@ -505,5 +505,5 @@ df_clean['ingreso_total'] = df_clean.apply(lambda row:  row['salario_anual'] + r
 
 
 ```python
-df_clean.to_excel("V&S_Encuestas_clean.xlsx", index=False)
+df_clean.to_excel("V&S_Encuestas_clean.xlsx", index=False, encoding="UTF-8")
 ```
