@@ -165,7 +165,6 @@ score_sort = [(x,) + i
              for i in process.extract(x, sorted_unique_cities, scorer=fuzz.token_set_ratio)]
 #Create a dataframe from the tuples
 similarity_sort = pd.DataFrame(score_sort, columns=['city_sort','match_sort','score_sort'])
-similarity_sort.head()
 ```
 
     Applied processor reduces input query to empty string, all comparisons will have score 0. [Query: '']
@@ -179,142 +178,9 @@ similarity_sort.head()
     
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>city_sort</th>
-      <th>match_sort</th>
-      <th>score_sort</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td></td>
-      <td></td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td></td>
-      <td>-</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td></td>
-      <td>--</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td></td>
-      <td>---</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td></td>
-      <td>-----</td>
-      <td>100</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
 ```python
 similarity_sort['sorted_city_sort'] = np.minimum(similarity_sort['city_sort'], similarity_sort['match_sort'])
-similarity_sort.head()
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>city_sort</th>
-      <th>match_sort</th>
-      <th>score_sort</th>
-      <th>sorted_city_sort</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td></td>
-      <td></td>
-      <td>100</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td></td>
-      <td>-</td>
-      <td>100</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td></td>
-      <td>--</td>
-      <td>100</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td></td>
-      <td>---</td>
-      <td>100</td>
-      <td></td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td></td>
-      <td>-----</td>
-      <td>100</td>
-      <td></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 
 ```python
@@ -322,108 +188,7 @@ high_score_sort = similarity_sort[(similarity_sort['score_sort'] >= 98) &
                 (similarity_sort['city_sort'] !=  similarity_sort['match_sort']) &
                 (similarity_sort['sorted_city_sort'] != similarity_sort['match_sort'])]
 high_score_sort = high_score_sort.drop('sorted_city_sort',axis=1).copy()
-high_score_sort
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>city_sort</th>
-      <th>match_sort</th>
-      <th>score_sort</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td></td>
-      <td>-</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td></td>
-      <td>--</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td></td>
-      <td>---</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td></td>
-      <td>-----</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>(Anonymous)</td>
-      <td>Anonymous</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>20703</th>
-      <td>rather not say</td>
-      <td>rather not say (too identifiable)</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>20704</th>
-      <td>rather not say</td>
-      <td>would rather not say</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>20722</th>
-      <td>regional</td>
-      <td>regional city</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>20736</th>
-      <td>remove</td>
-      <td>would remove my anonymity to state this</td>
-      <td>100</td>
-    </tr>
-    <tr>
-      <th>20862</th>
-      <td>small college town</td>
-      <td>small town</td>
-      <td>100</td>
-    </tr>
-  </tbody>
-</table>
-<p>2373 rows × 3 columns</p>
-</div>
-
-
 
 
 ```python
@@ -469,17 +234,17 @@ unique_currency
 
 
 
-    ['HKD',
-     'USD',
-     'EUR',
-     'AUD/NZD',
-     'GBP',
+    ['SEK',
+     'CAD',
+     'JPY',
      'Other',
      'CHF',
-     'SEK',
-     'JPY',
+     'AUD/NZD',
+     'USD',
+     'HKD',
      'ZAR',
-     'CAD']
+     'EUR',
+     'GBP']
 
 
 
