@@ -69,7 +69,11 @@ timestamp', 'age_range', 'industry', 'job_title',
 | ingreso_total | número | Ingreso total en pesos colombianos |
 | city_clean | texto | Ciudad donde trabaja, luego de la limpieza y estandarización | 
 
+**Actualización de datos para aplicar el modelado de datos**
 
-Describir paso a paso lo que una persona debería hacer para actualizar los datos y aplicar el modelado que han diseñado. Piensen esta sección como una ayuda a alguien que los va a reemplazar en el trabajo. Esta persona debe entender con precisión cómo replicar lo que diseñaron. Este paso a paso asume que la estructura de la base de datos original no cambia en nuevas versiones. Puede ser tan detallada como ustedes quieran, pero debe ser muy claro cómo crear los nuevos campos y procedimientos para limpiar.  
+Para actualizar los datos primero se debe descargar de el archivo del siguiente link en formato csv. Posteriormente, se debe utilizar el jupiter notebook donde se encuentra el proceso de modelado de datos. A continuación, realizaré un resumen de la implementación del modelado. Para más detalle, pueden ver el modelado de datos aquí. 
+1. Se realiza la limpieza de los campos de “country” y “city” para homogenizar los nombres de los lugares. Para el campo de *country*, se implementa la función *clean_country* del paquete *dataprep* para la estandarización del campo mencionado pues la función limpia una columna que contiene nombres de países y/o códigos de país ISO 3166, y los normaliza en el formato deseado. También, se implementa una limpieza manual usando un diccionario con solo los textos faltantes para los nombres de paises que no fueron resultos por la función. Para el campo de *city* se eliminan las filas que presenten ciudades con valores faltantes. Luego, se revisan y organizan las ciudades en una lista para aplicar la métrica de similitud de textos del paquete *fuzzywuzzy*.
+2. Se calculan los campos de “salario_anual” y “compensaciones” en  Pesos Colombianos. Para ello, se tuvo en cuenta la tasa de cambio obtenida el 12/02/2023 por https://www.xe.com/currencyconverter/. 
+3. Se crea el campo adicional del "ingreso total" sumando los campos calculados del salario anual y las compensaciones en pesos colombianos.
 
-
+Luego de ejecutar todo el jupiter notebook, se obtiene un archivo con la base de datos limpia en formato csv. Dicha base se debe cargar nuevamente a Looker Studio para actualizar la información que esta mostrando el visualizador.
